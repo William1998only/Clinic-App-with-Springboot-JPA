@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MedicineTypeService {
-    private final MedicineTypeRepository medicineTypeRepository;
+  private final MedicineTypeRepository medicineTypeRepository;
 
-    public MedicineTypeService(MedicineTypeRepository medicineTypeRepository) {
-        this.medicineTypeRepository = medicineTypeRepository;
-    }
+  public MedicineTypeService(MedicineTypeRepository medicineTypeRepository) {
+    this.medicineTypeRepository = medicineTypeRepository;
+  }
 
-    public void insertMedicineType(InsertMedicineTypeRequestDTO request) {
-        MedicineType medicineType = new MedicineType(request);
+  public void insertMedicineType(InsertMedicineTypeRequestDTO request) {
+    MedicineType medicineType = new MedicineType(request);
 
-        medicineTypeRepository.save(medicineType);
-    }
+    medicineTypeRepository.save(medicineType);
+  }
 }

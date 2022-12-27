@@ -13,18 +13,18 @@ import javax.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MedicineType {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "medicine_type", nullable = false, length = 20)
-    private String medType;
+  @Column(name = "medicine_type", nullable = false, length = 20)
+  private String medType;
 
-    @Column(name = "medicine_code_type", nullable = false, unique = true)
-    private Integer medicineCodeType;
+  @Column(name = "medicine_code_type", nullable = false, unique = true)
+  private Integer medicineCodeType;
 
-    public MedicineType(InsertMedicineTypeRequestDTO request) {
-        this.medType = request.getMedicineType();
-        this.medicineCodeType = request.getMedicineCodeType();
-    }
+  public MedicineType(InsertMedicineTypeRequestDTO request) {
+    this.medType = request.getMedicineType();
+    this.medicineCodeType = request.getMedicineCodeType();
+  }
 }

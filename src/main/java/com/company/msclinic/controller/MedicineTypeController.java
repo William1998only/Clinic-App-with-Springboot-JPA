@@ -15,22 +15,22 @@ import static com.company.msclinic.constant.Url.MEDICINE_TYPE;
 @RestController
 @RequestMapping(value = MEDICINE_TYPE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MedicineTypeController {
-    private final MedicineTypeService medicineTypeService;
+  private final MedicineTypeService medicineTypeService;
 
-    public MedicineTypeController(MedicineTypeService medicineTypeService) {
-        this.medicineTypeService = medicineTypeService;
+  public MedicineTypeController(MedicineTypeService medicineTypeService) {
+    this.medicineTypeService = medicineTypeService;
+  }
+
+  @PostMapping
+  public ResponseEntity<String> insertMedicineType(@RequestBody InsertMedicineTypeRequestDTO request) {
+    try {
+      medicineTypeService.insertMedicineType(request);
+
+      return new ResponseEntity<>("Input success", HttpStatus.OK);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+
+      return new ResponseEntity<>("Input fail", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    @PostMapping
-    public ResponseEntity<String> insertMedicineType(@RequestBody InsertMedicineTypeRequestDTO request) {
-        try {
-            medicineTypeService.insertMedicineType(request);
-
-            return new ResponseEntity<>("Input success", HttpStatus.OK);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-
-            return new ResponseEntity<>("Input fail", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+  }
 }

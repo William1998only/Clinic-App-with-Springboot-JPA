@@ -15,26 +15,26 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class MedicineTypeServiceTest extends AbstractServiceTest {
-    @MockBean
-    private MedicineTypeRepository medicineTypeRepository;
+  @MockBean
+  private MedicineTypeRepository medicineTypeRepository;
 
-    @Autowired
-    private MedicineTypeService medicineTypeService;
+  @Autowired
+  private MedicineTypeService medicineTypeService;
 
-    @Nested
-    @DisplayName("insertMedicineType Test Case")
-    class InsertMedicineTypeTestCase {
+  @Nested
+  @DisplayName("insertMedicineType Test Case")
+  class InsertMedicineTypeTestCase {
 
-        @Test
-        @DisplayName("Expect to call repository when data is saved")
-        void success() {
-            InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
-            request.setMedicineType("sirup");
-            request.setMedicineCodeType(1);
+    @Test
+    @DisplayName("Expect to call repository when data is saved")
+    void success() {
+      InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
+      request.setMedicineType("sirup");
+      request.setMedicineCodeType(1);
 
-            medicineTypeService.insertMedicineType(request);
+      medicineTypeService.insertMedicineType(request);
 
-            verify(medicineTypeRepository, times(1)).save(any(MedicineType.class));
-        }
+      verify(medicineTypeRepository, times(1)).save(any(MedicineType.class));
     }
+  }
 }

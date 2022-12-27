@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class InsertMedicineTypeRequestDTO {
-    private String medicineType;
-    private Integer medicineCodeType;
+  private String medicineType;
+  private Integer medicineCodeType;
 }

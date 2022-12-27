@@ -23,48 +23,48 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Medicine Type Controller Test")
 @WebMvcTest(controllers = MedicineTypeController.class)
 class MedicineTypeControllerTest extends AbstractControllerTest {
-    @MockBean
-    private MedicineTypeService medicineTypeService;
+  @MockBean
+  private MedicineTypeService medicineTypeService;
 
-    @Nested
-    @DisplayName("Insert Medicine Type Test Case")
-    class InsertMedicineTypeTestCase {
-        @Test
-        @SneakyThrows
-        @DisplayName("Expect to return input success when save is success")
-        void success() {
-            InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
-            request.setMedicineType("sirup");
-            request.setMedicineCodeType(1);
-            doNothing().when(medicineTypeService).insertMedicineType(request);
+  @Nested
+  @DisplayName("Insert Medicine Type Test Case")
+  class InsertMedicineTypeTestCase {
+    @Test
+    @SneakyThrows
+    @DisplayName("Expect to return input success when save is success")
+    void success() {
+      InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
+      request.setMedicineType("sirup");
+      request.setMedicineCodeType(1);
+      doNothing().when(medicineTypeService).insertMedicineType(request);
 
-            MvcResult mvcResult = mockMvc.perform(
-                            post(Url.MEDICINE_TYPE)
-                                    .content(objectMapper.writeValueAsString(request))
-                                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andReturn();
+      MvcResult mvcResult = mockMvc.perform(
+          post(Url.MEDICINE_TYPE)
+            .content(objectMapper.writeValueAsString(request))
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andReturn();
 
-            assertThat(mvcResult.getResponse().getContentAsString(), is("Input success"));
-        }
-
-        @Test
-        @SneakyThrows
-        @DisplayName("Expect to return input fail when save is fail")
-        void fail() {
-            InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
-            request.setMedicineType("sirup");
-            request.setMedicineCodeType(1);
-            doThrow(new RuntimeException()).when(medicineTypeService).insertMedicineType(request);
-
-            MvcResult mvcResult = mockMvc.perform(
-                            post(Url.MEDICINE_TYPE)
-                                    .content(objectMapper.writeValueAsString(request))
-                                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isInternalServerError())
-                    .andReturn();
-
-            assertThat(mvcResult.getResponse().getContentAsString(), is("Input fail"));
-        }
+      assertThat(mvcResult.getResponse().getContentAsString(), is("Input success"));
     }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Expect to return input fail when save is fail")
+    void fail() {
+      InsertMedicineTypeRequestDTO request = new InsertMedicineTypeRequestDTO();
+      request.setMedicineType("sirup");
+      request.setMedicineCodeType(1);
+      doThrow(new RuntimeException()).when(medicineTypeService).insertMedicineType(request);
+
+      MvcResult mvcResult = mockMvc.perform(
+          post(Url.MEDICINE_TYPE)
+            .content(objectMapper.writeValueAsString(request))
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isInternalServerError())
+        .andReturn();
+
+      assertThat(mvcResult.getResponse().getContentAsString(), is("Input fail"));
+    }
+  }
 }
