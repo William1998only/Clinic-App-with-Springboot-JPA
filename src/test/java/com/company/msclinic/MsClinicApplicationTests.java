@@ -1,4 +1,4 @@
-package com.lawencon.klinik.src.test.java.com.company.msclinic;
+package com.company.msclinic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
